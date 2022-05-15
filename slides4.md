@@ -27,5 +27,4 @@
 ## Slide 2.4
 Est-ce que ça zoom en rouge??
 ---
-## Est-ce que cela recharge automatiquement?
-... je ne pense pas...
+## Un change effectué dans le container 😎
