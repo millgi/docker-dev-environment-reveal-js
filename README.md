@@ -7,17 +7,16 @@ presentation.
 The [`.docker/Dockerfile.devenv`](.docker/Dockerfile.devenv) clones
 reveal.js in the `/work` directory and creates a `/work/slides` simlink (`ln -s`)
 which points to `/com.docker.devenvironments.code`. The later is the directory
-in which the git repository will be mounted. The [`.docker/index.html`](.docker/index.html)
+where the git repository will be mounted. The [`.docker/index.html`](.docker/index.html)
 automatically redirects (using javascript) the `http://localhost:8080/` request to
-the `/slides` sub directory.
+the `/slides` sub directory. This allows to serve the [`index.html`](index.html)
+directly as if it was at the root of the web server.
 
 ## Usage
 
-Create a new Docker dev environment (in the Docker Desktop UI) based
-on this repository. Open the remote environment in VSCode and then a
-termnial. Switch to the `/work` directory then run the command
-`npm start`. This trick allows to server the [`index.html`](index.html)
-directly as if it was at the root of the web server.
+Create a new Docker dev environment (in the Docker Desktop UI) based on this repository.
+Open the remote environment in VSCode and then a termnial. Switch to the `/work`
+directory then run the command `npm start`.
 
 The presentation should be available at [http://localhost:8000](http://localhost:8000)
 
