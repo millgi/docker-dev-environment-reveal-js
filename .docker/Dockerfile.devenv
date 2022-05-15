@@ -13,6 +13,9 @@ RUN git clone https://github.com/hakimel/reveal.js.git -b ${REVEAL_JS_VERSION}
 
 FROM node:18.1.0-slim
 
+RUN apt-get update && apt-get install -y git && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN mkdir -p /work
 RUN mkdir -p /com.docker.devenvironments.code
 
