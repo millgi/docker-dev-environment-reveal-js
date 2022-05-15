@@ -1,0 +1,32 @@
+FROM alpine as clone
+
+ARG REVEAL_JS_VERSION=4.3.1
+
+RUN apk fix && \
+    apk --no-cache --update add git git-lfs less openssh && \
+    git lfs install
+
+RUN mkdir -p /work
+WORKDIR /work
+
+RUN git clone https://github.com/hakimel/reveal.js.git -b ${REVEAL_JS_VERSION}
+
+FROM node:18.1.0-slim
+
+RUN mkdir -p /work
+RUN mkdir -p /com.docker.devenvironments.code
+
+COPY --from=clone /work/reveal.js/ /work/
+
+WORKDIR /work
+VOLUME [ "/com.docker.devenvironments.code" ]
+RUN ln -s /com.docker.devenvironments.code /work/slides
+
+RUN npm install
+
+ADD index.html /work/index.html
+
+EXPOSE 8000
+EXPOSE 35729
+
+ENTRYPOINT ["npm", "start", "--", "--host=0.0.0.0"]
